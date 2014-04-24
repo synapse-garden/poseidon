@@ -1,3 +1,7 @@
 language: clojure
 lein: lein2
 script: lein2 test
+notifications:
+  hipchat:
+    rooms:
+      secure: IamepIr4wM74MU9k2zFDYOFFI5t79bLWrMlmht11gSZ6dXpgd3lFh/qJsDyauG2WIuJwKP9wDTNn9LD1u7zwswKRYHAFhFmFY1sJVFOsnZI2L5hw1q6J6Hlt4KWXxh5Yd0mu6++0TO8+ITDzkKORbUSJwkL1glenFpdrksOjqyw=
