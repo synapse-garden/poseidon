@@ -1,14 +1,9 @@
-# poseidon
+# poseidon [![Build Status](https://travis-ci.org/synapse-garden/poseidon.svg?branch=dev)](https://travis-ci.org/synapse-garden/poseidon)
 
-A Clojure library designed to ... well, that part is up to you.
-
-## Usage
-
-FIXME
+Poseidon is a simple DigitalOcean deploy manager written in Clojure.
 
 ## License
 
-Copyright © 2014 FIXME
+Copyright © 2014 Synapse Garden
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under Afero GPL
