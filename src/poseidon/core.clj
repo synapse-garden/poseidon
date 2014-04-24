@@ -6,15 +6,18 @@
   {:api-key ""
    :client-id ""})
 
+(def debug-mode? true)
+
 (def web-creds
-  '(str "client_id=" (creds :client-id) "&api_key=" (creds :api-key)))
+  (str "client_id=" (creds :client-id) "&api_key=" (creds :api-key)))
 
 (def base "https://api.digitalocean.com/")
 
-(def digitalocean-paths
-  {:droplets (str base "droplets?" web-creds)})
+(def digitalocean-paths {:droplets (str base "droplets?" web-creds)})
 
 (defn basic-query
   "A basic query against DigitalOcean API."
-  []
-  ((client/get (digitalocean-paths :droplets))))
+  [& {:keys [debug]
+      :or {debug debug-mode?}}]
+  (json/read-str
+   ((client/get (digitalocean-paths :droplets) {:throw-exceptions (not debug)}) :body)))
