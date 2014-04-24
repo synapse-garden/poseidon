@@ -6,4 +6,4 @@ Poseidon is a simple DigitalOcean deploy manager written in Clojure.
 
 Copyright © 2014 Synapse Garden
 
-Distributed under Afero GPL
+Distributed under Affero GPL
