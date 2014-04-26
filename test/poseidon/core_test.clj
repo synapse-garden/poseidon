@@ -2,10 +2,11 @@
   (:require [clojure.test :refer :all]
             [poseidon.core :refer :all]))
 
-(def error-responses
+(def responses
   {:access-denied {"status" "ERROR"
                    "error_message" "Access Denied"
-                   "message" "Access Denied"}})
+                   "message" "Access Denied"}
+   :droplets {:get-all {}}})
 
 (deftest api-working-test
   (testing "Checking to make sure API queries properly."

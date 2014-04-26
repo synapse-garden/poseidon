@@ -4,22 +4,6 @@
 
 (def api-base "https://api.digitalocean.com/")
 
-(defn rekey
-  [mp ks]
-  (if (> (count ks) 0)
-    (rekey (get mp (first ks)) (rest ks))
-    mp))
-
-(defn env
-  "The value of an environment variable k."
-  [k] (System/getenv k))
-
-(defn creds
-  "DO credentials map based on environment variables $DO_CLIENT_ID and $DO_API_KEY."
-  []
-  {:api-key (env "DO_API_KEY")
-   :client-id (env "DO_CLIENT_ID")})
-
 (defn url-creds
   "The credential login map."
   ([] (str "client_id=" ((creds) :client-id) "&api_key=" ((creds) :api-key)))
@@ -31,18 +15,11 @@
 (defn digitalocean-queries
   "Queries."
   [querykeys]
-  (let [path (fn [route] (str api-base route (url-creds)))
-        args-ok? (fn [expected actual] (if (= (expected) (keys actual)) true false))
-        query-fn (fn [route expected] (fn [params]
-                                      (if (args-ok? expected params)
-                                        (str (path route)
-                                             (for [k expected]
-                                               (if (= k (first expected))
-                                                 (str (name k) "=" (get params k))
-                                                 (str "&" (name k) "=" (get params k))))))))
+  (let [
         queries {:droplets
-                 {:get-all (query-fn "droplets?" nil)
+                 {:get-all (query-fn "droplets/?" nil)
                   :new (query-fn "droplets/new?" [:name :size :image])}}]
+
     (rekey queries querykeys)))
      ;; :show (query-fn "droplets/")}))
      ;;  :or }
